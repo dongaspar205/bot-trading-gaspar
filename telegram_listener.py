@@ -1,6 +1,6 @@
 from fastapi import Request
 from ejecucion_mexcbot import interpretar_senal, ejecutar_trade
-import traceback  # ✅ Para mostrar errores detallados
+import traceback  # Para imprimir errores detallados
 
 async def telegram_webhook(req: Request):
     try:
@@ -9,7 +9,7 @@ async def telegram_webhook(req: Request):
         chat_id = str(message.get("chat", {}).get("id"))
         text = message.get("text", "")
 
-       print("📥 Mensaje recibido por webhook")
+        print("📥 Mensaje recibido por webhook")  # ✅ Verifica que el webhook funciona
 
         if "#Señal Cripto" in text:
             print(f"📩 Señal detectada:\n{text}")
