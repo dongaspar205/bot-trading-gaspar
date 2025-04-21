@@ -10,3 +10,7 @@ def root():
 @app.post("/webhook/telegram")
 async def telegram_webhook_handler(req: Request):
     return await telegram_webhook(req)
+    
+from keep_alive import iniciar_keep_alive
+
+iniciar_keep_alive()
