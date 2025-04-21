@@ -1,5 +1,6 @@
 from fastapi import Request
 from ejecucion_mexcbot import interpretar_senal, ejecutar_trade
+import traceback  # ✅ Para mostrar errores detallados
 
 async def telegram_webhook(req: Request):
     try:
@@ -13,7 +14,7 @@ async def telegram_webhook(req: Request):
             datos = interpretar_senal(text)
             if datos:
                 resultado = ejecutar_trade(**datos)
-                print(f"✅ Resultado: {resultado['mensaje']}")
+                print(f"🟢 Trade ejecutado: {resultado['mensaje']}")
             else:
                 print("⚠️ No se pudo interpretar la señal.")
 
@@ -23,4 +24,5 @@ async def telegram_webhook(req: Request):
 
     except Exception as e:
         print(f"❌ Error en webhook: {e}")
+        traceback.print_exc()
         return {"status": "error", "message": str(e)}
