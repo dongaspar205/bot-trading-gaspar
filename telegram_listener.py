@@ -10,7 +10,8 @@ async def telegram_webhook(req: Request):
         text = message.get("text", "")
         text = text.strip()
 
-        print("📥 Mensaje recibido por webhook")  # Para confirmar entrada del mensaje
+        print("📥 Mensaje recibido por webhook")
+        print(f"🧪 Contenido crudo del mensaje:\n{text.encode('utf-8')}")
 
         if "#Señal Cripto" in text or "#Señal Cripto –" in text or "#Señal Cripto -" in text:
             print(f"📩 Señal detectada:\n{text}")
