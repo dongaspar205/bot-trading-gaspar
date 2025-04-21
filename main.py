@@ -1,0 +1,1 @@
+# Lógica principal del bot de trading (FastAPI backend)
