@@ -13,10 +13,8 @@ def root():
 async def telegram_webhook_handler(req: Request):
     return await telegram_webhook(req)
 
-# 🧠 Mantener el proceso vivo sin bloquear FastAPI
+# 🔁 Ejecutamos el keep-alive sin bloquear
 def iniciar_bot():
     iniciar_keep_alive()
-    # Podés agregar más tareas aquí si querés en paralelo
 
-# 🔁 Ejecutamos en segundo plano para que uvicorn no se bloquee
 threading.Thread(target=iniciar_bot, daemon=True).start()
