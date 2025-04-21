@@ -9,6 +9,8 @@ async def telegram_webhook(req: Request):
         chat_id = str(message.get("chat", {}).get("id"))
         text = message.get("text", "")
 
+       print("📥 Mensaje recibido por webhook")
+
         if "#Señal Cripto" in text:
             print(f"📩 Señal detectada:\n{text}")
             datos = interpretar_senal(text)
