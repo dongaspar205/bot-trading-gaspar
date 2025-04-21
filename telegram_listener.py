@@ -1,11 +1,13 @@
 from fastapi import Request
 from ejecucion_mexcbot import interpretar_senal, ejecutar_trade
-import traceback  # Para mostrar errores detallados
+import traceback
 
 async def telegram_webhook(req: Request):
     try:
         body = await req.json()
         message = body.get("message", {})
+        print(f"🧩 Mensaje completo recibido:\n{message}")  # 👈 MOSTRAMOS TODO
+
         chat_id = str(message.get("chat", {}).get("id"))
         text = message.get("text", "")
         text = text.strip()
