@@ -9,7 +9,8 @@ async def telegram_webhook(req: Request):
         print(body)
 
         message = body.get("message") or body.get("channel_post") or {}
-        text = message.get("text", "").strip()
+        chat_id = str(message.get("chat", {}).get("id"))
+        text = message.get("text", "")
 
         print("📥 Mensaje recibido por webhook")
         print(f"🧪 Contenido crudo del mensaje:\n{text.encode('utf-8')}")
