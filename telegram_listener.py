@@ -5,10 +5,9 @@ import traceback
 async def telegram_webhook(req: Request):
     try:
         body = await req.json()
-        message = body.get("message", {})
-        print(f"🧩 Mensaje completo recibido:\n{message}")  # 👈 MOSTRAMOS TODO
+        print(f"🧩 Webhook recibido:\n{body}")
 
-        chat_id = str(message.get("chat", {}).get("id"))
+        message = body.get("message") or body.get("channel_post") or {}
         text = message.get("text", "")
         text = text.strip()
 
