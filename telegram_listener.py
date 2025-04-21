@@ -5,16 +5,16 @@ import traceback
 async def telegram_webhook(req: Request):
     try:
         body = await req.json()
-        print(f"🧩 Webhook recibido:\n{body}")
+        print("🧩 Webhook recibido:")
+        print(body)
 
         message = body.get("message") or body.get("channel_post") or {}
-        text = message.get("text", "")
-        text = text.strip()
+        text = message.get("text", "").strip()
 
         print("📥 Mensaje recibido por webhook")
         print(f"🧪 Contenido crudo del mensaje:\n{text.encode('utf-8')}")
 
-        if "#Señal Cripto" in text or "#Señal Cripto –" in text or "#Señal Cripto -" in text:
+        if "#Señal Cripto" in text:
             print(f"📩 Señal detectada:\n{text}")
             datos = interpretar_senal(text)
             if datos:
@@ -22,7 +22,6 @@ async def telegram_webhook(req: Request):
                 print(f"🟢 Trade ejecutado: {resultado['mensaje']}")
             else:
                 print("⚠️ No se pudo interpretar la señal.")
-
             return {"status": "ok", "message": "Señal procesada"}
 
         print("📭 Mensaje recibido pero no es una señal.")
