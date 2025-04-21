@@ -13,3 +13,9 @@ def root():
 @app.post("/webhook/telegram")
 async def telegram_webhook_handler(req: Request):
     return await telegram_webhook(req)
+from telegram_listener import telegram_webhook
+from fastapi import Request
+
+@app.post("/webhook/telegram")
+async def webhook_handler(req: Request):
+    return await telegram_webhook(req)
