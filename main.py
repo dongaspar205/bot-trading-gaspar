@@ -11,9 +11,10 @@ def root():
 
 @app.post("/webhook/telegram")
 async def telegram_webhook_handler(req: Request):
+    print("📡 Llamada recibida en /webhook/telegram")  # 🔍 Línea de test
     return await telegram_webhook(req)
 
-# 🔁 Ejecutamos el keep-alive sin bloquear
+# 🔁 Ejecutamos keep-alive en segundo plano
 def iniciar_bot():
     iniciar_keep_alive()
 
